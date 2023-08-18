@@ -1,0 +1,18 @@
+{
+  "id": "dev.catalyst.VCTextNotif",
+  "name": "VCTextNotif",
+  "description": "...",
+  "author": {
+    "name": "Catalyst",
+    "discordID": "1000992611840049192",
+    "github": "catalyst4222"
+  },
+  "version": "0.0.1",
+  "updater": {
+    "type": "github",
+    "id": "catalyst4222/VCTextNotif"
+  },
+  "license": "MIT",
+  "type": "replugged-plugin",
+  "renderer": "src/index.tsx"
+}
