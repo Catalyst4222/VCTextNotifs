@@ -1,4 +1,4 @@
-import { common, components, settings, util, webpack } from "replugged";
+import { common, components, settings } from "replugged";
 import { Option, Separator } from "./components";
 
 const { Button, Text, SelectItem } = components;
