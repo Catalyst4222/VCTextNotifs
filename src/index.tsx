@@ -1,12 +1,10 @@
-import { Logger, plugins, webpack, util } from "replugged";
+import { plugins, util, webpack } from "replugged";
 
 import { Message } from "discord-types/general";
 import { PluginExports } from "replugged/dist/types";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { cfg } from "./settings";
 const { sleep } = util;
-
-const logger = new Logger("Plugin", "VCTextNotif");
 
 enum ShouldNotify {
   DONT_NOTIFY,
@@ -55,7 +53,7 @@ export async function start() {
 
   const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports! as ReCutecordExports;
 
-  const notificationChecks = exports.notificationChecks;
+  const { notificationChecks } = exports;
 
   notificationChecks.push(["VCTextNotifs", matchVCToText]);
 }
@@ -67,7 +65,7 @@ export function stop() {
     const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports! as ReCutecordExports;
     if (!exports.notificationChecks) return;
 
-    const targets = exports.notificationChecks.filter((item) => item[0] == "VCTextNotifs");
+    const targets = exports.notificationChecks.filter((item) => item[0] === "VCTextNotifs");
 
     targets.forEach((item) => {
       const index = exports.notificationChecks.indexOf(item);
