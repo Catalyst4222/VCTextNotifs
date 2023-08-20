@@ -41,37 +41,35 @@ function matchVCToText(msg: Message): ShouldNotify {
   return ShouldNotify.CONTINUE;
 }
 
-
-
 function checkForCutecord(): boolean {
   if (!plugins.plugins.has("eu.shadygoat.cutecord")) {
-    return false
+    return false;
   }
   if (plugins.getDisabled().includes("eu.shadygoat.cutecord")) {
-    return false
+    return false;
   }
 
-  const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports as ReCutecordExports | undefined;
+  const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports as
+    | ReCutecordExports
+    | undefined;
   // eslint-disable-next-line no-undefined
   if (exports === undefined || !exports.notificationChecks) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
-
 export async function start() {
-  
-  let cutecordInstalled = false
+  let cutecordInstalled = false;
   for (let i = 1; i < 6; i++) {
-    await sleep(i*50)
+    await sleep(i * 50);
     if (checkForCutecord()) {
-      cutecordInstalled = true
+      cutecordInstalled = true;
     }
   }
 
   if (!cutecordInstalled) {
-    throw new Error("Unable to access ReCutecord!")
+    throw new Error("Unable to access ReCutecord!");
   }
 
   const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports! as ReCutecordExports;
