@@ -41,14 +41,37 @@ function matchVCToText(msg: Message): ShouldNotify {
   return ShouldNotify.CONTINUE;
 }
 
-export async function start() {
-  await sleep(100);
 
+
+function checkForCutecord(): boolean {
   if (!plugins.plugins.has("eu.shadygoat.cutecord")) {
-    throw new Error("ReCutecord is not installed!");
+    return false
   }
   if (plugins.getDisabled().includes("eu.shadygoat.cutecord")) {
-    throw new Error("ReCutecord is disabled!");
+    return false
+  }
+
+  const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports as ReCutecordExports | undefined;
+  // eslint-disable-next-line no-undefined
+  if (exports === undefined || !exports.notificationChecks) {
+    return false
+  }
+  return true
+}
+
+
+export async function start() {
+  
+  let cutecordInstalled = false
+  for (let i = 1; i < 6; i++) {
+    await sleep(i*50)
+    if (checkForCutecord()) {
+      cutecordInstalled = true
+    }
+  }
+
+  if (!cutecordInstalled) {
+    throw new Error("Unable to access ReCutecord!")
   }
 
   const exports = plugins.plugins.get("eu.shadygoat.cutecord")!.exports! as ReCutecordExports;

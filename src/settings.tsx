@@ -102,7 +102,6 @@ export function Settings(): React.ReactElement {
         <Button
           color={Button.Colors.RED}
           onClick={() => {
-            console.log("A");
             const idx = rules.findIndex((value) => value.name === selected.name);
             rules.splice(idx, 1);
             if (rules.length === 0) {
