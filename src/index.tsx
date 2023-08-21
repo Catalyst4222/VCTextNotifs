@@ -1,10 +1,10 @@
-import { plugins, util, webpack } from "replugged";
+import { common, plugins, util } from "replugged";
 
 import { Message } from "discord-types/general";
 import { PluginExports } from "replugged/dist/types";
-import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { cfg } from "./settings";
 const { sleep } = util;
+const { channels } = common;
 
 enum ShouldNotify {
   DONT_NOTIFY,
@@ -15,18 +15,8 @@ type ReCutecordExports = PluginExports & {
   notificationChecks: Array<[string, (msg: Message) => ShouldNotify]>;
 };
 
-type VideoBackgroundStoreType = {
-  __getLocalVars(): { currentVoiceChannelId: string | null };
-} & Store;
-const VideoBackgroundStore =
-  webpack.getByStoreName<VideoBackgroundStoreType>("VideoBackgroundStore")!;
-
-function getActiveVCId(): string | null {
-  return VideoBackgroundStore.__getLocalVars().currentVoiceChannelId;
-}
-
 function matchVCToText(msg: Message): ShouldNotify {
-  const vcId = getActiveVCId();
+  const vcId = channels.getVoiceChannelId();
   const rules = cfg.get("rules");
 
   if (!vcId) return ShouldNotify.CONTINUE;

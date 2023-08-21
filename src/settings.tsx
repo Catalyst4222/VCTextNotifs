@@ -1,7 +1,7 @@
 import { common, components, settings } from "replugged";
-import { Option, Separator } from "./components";
+import { Option } from "./components";
 
-const { Button, Text, SelectItem } = components;
+const { Button, Text, SelectItem, Divider } = components;
 const { React } = common;
 
 type Rule = { name: string; vcs: string[]; texts: string[] };
@@ -76,7 +76,7 @@ export function Settings(): React.ReactElement {
           selected.texts = texts.split(",").map((id) => id.trim());
         }}></Option>
 
-      <Separator />
+      <Divider />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button

@@ -1,14 +1,7 @@
-import { common, components, webpack } from "replugged";
+import { common, components } from "replugged";
 
 const { TextInput, Text, Flex } = components;
 const { React } = common;
-const { FormDivider } = webpack.getByProps<{
-  FormDivider: React.FC<{ style: React.CSSProperties }>;
-}>("FormDivider")!;
-
-export function Separator() {
-  return <FormDivider style={{ marginTop: 20, marginBottom: 20 }} />;
-}
 
 export function Option({
   title,
