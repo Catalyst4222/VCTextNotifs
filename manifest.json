@@ -1,7 +1,7 @@
 {
   "id": "dev.catalyst.VCTextNotif",
   "name": "VCTextNotif",
-  "description": "...",
+  "description": "Receive notifications from chosen text channels when in a voice channel",
   "author": {
     "name": "Catalyst",
     "discordID": "1000992611840049192",
