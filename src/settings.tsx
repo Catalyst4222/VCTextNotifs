@@ -64,7 +64,10 @@ export function Settings(): React.ReactElement {
         value={vcs}
         onChange={(value) => {
           setVcs(value);
-          selected.vcs = vcs.split(",").map((id) => id.trim());
+          selected.vcs = vcs
+            .split(",")
+            .map((id) => id.trim())
+            .filter((id) => id);
         }}></Option>
 
       <Option
@@ -73,10 +76,13 @@ export function Settings(): React.ReactElement {
         value={texts}
         onChange={(value) => {
           setTexts(value);
-          selected.texts = texts.split(",").map((id) => id.trim());
+          selected.texts = texts
+            .split(",")
+            .map((id) => id.trim())
+            .filter((id) => id);
         }}></Option>
 
-      <Divider />
+      <Divider style={{ marginTop: 20, marginBottom: 20 }} />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
@@ -113,8 +119,6 @@ export function Settings(): React.ReactElement {
           Delete Rule
         </Button>
       </div>
-
-      {/** todo delete a rule, add a new rule */}
     </>
   );
 }

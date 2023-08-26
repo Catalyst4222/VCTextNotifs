@@ -1,4 +1,4 @@
-# VCTextNotif
+# VCTextNotifs
 
 [![Install in Replugged](https://img.shields.io/badge/-Install%20in%20Replugged-blue?style=for-the-badge&logo=none)](https://replugged.dev/install?identifier=catalyst4222/VCTextNotifs&source=github)
 
@@ -13,4 +13,4 @@ When a message is sent, VCTextNotifs checks if:
 - and the message's channel is linked with the voice channel
 If all of the above are true, then a notification is sent
 
-> Note: [ReCutecord](https://github.com/ShadiestGoat/ReCutecord) must be installed for VCTextNotifs to work
+> Note: Due to implementation details, having [ReCutecord](https://github.com/ShadiestGoat/ReCutecord) installed may affect when notifications are shown
