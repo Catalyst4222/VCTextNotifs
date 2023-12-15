@@ -39,10 +39,10 @@ function matchedVCToText(channelId: string): boolean {
 function patchWithNoCutecord() {
   // mod getNotifyMessagesInSelectedChannel
   const mod = webpack.getBySource<Record<string, AnyFunction>>(
-    "GROUP_DM&&e.type===P.uaV.RECIPIENT_REMOVE",
+    /GROUP_DM&&.\.type===.\.MessageTypes\.RECIPIENT_REMOVE/,
   );
   if (!mod) throw new Error("Module not found!");
-  const key = webpack.getFunctionKeyBySource(mod, "GROUP_DM&&e.type===P.uaV.RECIPIENT_REMOVE");
+  const key = webpack.getFunctionKeyBySource(mod, /GROUP_DM&&.\.type===.\.MessageTypes\.RECIPIENT_REMOVE/);
   if (!key) throw new Error("Key not found!");
 
   injector.instead<typeof mod, string, [Message, string, boolean], boolean>(
